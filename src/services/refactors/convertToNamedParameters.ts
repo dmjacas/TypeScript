@@ -221,12 +221,10 @@ namespace ts.refactor.convertToNamedParameters {
             return undefined;
         }
 
-        function entryToType(entry: FindAllReferences.Entry): Node | undefined {
-            if (entry.kind === FindAllReferences.EntryKind.Node) {
-                const reference = entry.node;
-                if (getMeaningFromLocation(reference) === SemanticMeaning.Type || isExpressionWithTypeArgumentsInClassExtendsClause(reference.parent)) {
-                    return reference;
-                }
+        function entryToType(entry: FindAllReferences.NodeEntry): Node | undefined {
+            const reference = entry.node;
+            if (getMeaningFromLocation(reference) === SemanticMeaning.Type || isExpressionWithTypeArgumentsInClassExtendsClause(reference.parent)) {
+                return reference;
             }
             return undefined;
         }
